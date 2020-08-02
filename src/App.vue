@@ -2,8 +2,7 @@
   <div id="app">
     <div id="nav">
       <Navigation />
-      <login />
-      <register />
+      <event/>
     </div>
     <router-view/>
   </div>
@@ -11,14 +10,12 @@
 
 <script>
   import Navigation from '@/components/layout/Navigation'
-  import login from '@/components/layout/login'
-  import register from '@/components/layout/register'
-  
+  import event from '@/components/layout/event'
+
   export default{
     components: {
       Navigation,
-      login,
-      register
+      event
     }
   }
 </script>
