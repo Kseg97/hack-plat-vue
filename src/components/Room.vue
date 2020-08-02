@@ -1,7 +1,12 @@
 <template>
   <div class="row justify-content-center">
+
     <div class="col-md-5">
       <h3 class="text-center">Room</h3>
+      <div @click="muteAll()">
+       <p>
+          Mute all
+      </p> </div>
       <div id="jitsi-container"></div>
     </div>
   </div>
@@ -65,6 +70,10 @@ export default {
         this.startConference();
       } else alert("Jitsi Meet API script not loaded");
     },
+    muteAll(){
+      console.log("Mute All");
+      this.api.executeCommand('muteEveryone');
+    }
   },
 
   mounted() {
