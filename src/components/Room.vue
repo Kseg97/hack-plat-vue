@@ -1,8 +1,19 @@
 <template>
-  <div class="row justify-content-center">
-    <div class="col-md-5">
-      <h3 class="text-center">Room</h3>
-      <div id="jitsi-container"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <b-card>
+          <h2>Cargando Salas</h2>
+        </b-card>
+      </div>
+      <div class="col-md-9">
+        <b-card>
+          <div style="width:800px">
+            <h3 class="text-center">Room</h3>
+            <div id="jitsi-container"></div>
+          </div>
+        </b-card>
+      </div>
     </div>
   </div>
 </template>
@@ -20,9 +31,7 @@ export default {
       username: this.$route.params.name,
     };
   },
-  created() {
-
-  },
+  created() {},
   methods: {
     startConference() {
       var _this = this;
@@ -34,7 +43,7 @@ export default {
           videoInput: "<deviceLabel>",
           roomName: this.room,
           height: 500,
-          width: 800,
+          width: 755,
           parentNode: document.getElementById("jitsi-container"),
           interfaceConfigOverwrite: {
             filmStripOnly: false,
