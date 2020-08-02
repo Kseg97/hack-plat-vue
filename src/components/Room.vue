@@ -10,6 +10,9 @@
         <b-card>
           <div style="width:800px">
             <h3 class="text-center">Room</h3>
+            <div @click="muteAll()">
+              <p>Mute all</p> 
+            </div>
             <div id="jitsi-container"></div>
           </div>
         </b-card>
@@ -74,6 +77,10 @@ export default {
         this.startConference();
       } else alert("Jitsi Meet API script not loaded");
     },
+    muteAll(){
+      console.log("Mute All");
+      this.api.executeCommand('muteEveryone');
+    }
   },
 
   mounted() {
