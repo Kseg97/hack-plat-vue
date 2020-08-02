@@ -15,31 +15,50 @@ const routes = [
   {
     path: '/adding',
     name: 'addinguser',
-    //meta: { requiresAuth: true, allow: "admin" },
+    meta: { requiresAuth: false },
     component: () => import('../components/UserCreate')
   },
   {
     path: '/list',
     name: 'list',
-    //meta: { requiresAuth: true, allow: "admin" },
+    meta: { requiresAuth: false },
     component: () => import('../components/UserList')
   },
   {
+    path: '/list',
+    name: 'list',
+    meta: { requiresAuth: true, allow: "admin" },
+    component: () => import('../components/UserList')
+  },
+  {
+    path: '/announcement',
+    name: 'announcement',
+    meta: { requiresAuth: true, allow: "admin" },
+    component: () => import('../components/Annuoncement')
+  },
+  {
+    path: '/nextevent',
+    name: 'nextevent',
+    meta: { requiresAuth: true, allow: "admin" },
+    component: () => import('../components/NextEvent')
+  },
+
+  {
     path: '/edit/:id',
     name: 'edit',
-    //meta: { requiresAuth: true, allow: "admin" },
+    meta: { requiresAuth: true, allow: "admin" },
     component: () => import('../components/UserEdit')
   },
   {
     path: '/room/:id',
     name: 'room',
-    //meta: { requiresAuth: true, allow: "admin" },
+    meta: { requiresAuth: false },
     component: () => import('../components/Room')
   },
   {
     path: '/room/:id',
     name: 'room',
-    //meta: { requiresAuth: true, allow: "hacker" },
+    meta: { requiresAuth: false },
     component: () => import('../components/Room')
   },
   {

@@ -1,7 +1,23 @@
 <template>
   <div class="row">
-    <div class="col-md-6 mt-4">
+    <div class="col-md-2 mt-4 ml-4" v-for="item in UsersLeaders" :key="item.key">
       <b-card>
+        <div style="background-image: url(img/roomleave2.png); height: 150px;">
+          <td v-if="item.teamName">
+            <p style="color: #525f7f;">{{ item.teamName }}</p>
+          </td>
+          <router-link
+            v-if="item.teamName"
+            :to="{name: 'room', params: { id: item.key }}"
+            class="btn btn-primary"
+            style="margin-top:90px"
+          >Room</router-link>
+        </div>
+      </b-card>
+    </div>
+
+    <div class="col-md-6 mt-4">
+      <b-card v-if="userstorage[0].role!='hacker'">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -18,22 +34,26 @@
               <td v-if="user.teamName">{{ user.teamName }}</td>
               <td>
                 <router-link
-                  :to="{name: 'edit', params: { id: user.key, name: user.name }}"
-                  class="btn btn-primary"
-                >Edit</router-link>
-                <router-link
                   v-if="user.teamName"
                   :to="{name: 'room', params: { id: user.key }}"
                   class="btn btn-primary"
                 >Room</router-link>
-                <button @click.prevent="deleteUser(user.key)" class="btn btn-danger">Delete</button>
+                <div v-if="userstorage[0].role!='hacker'">
+                  <router-link
+                    :to="{name: 'edit', params: { id: user.key, name: user.name }}"
+                    class="btn btn-primary"
+                  >Edit</router-link>
+                  <div>
+                    <button @click.prevent="deleteUser(user.key)" class="btn btn-danger">Delete</button>
+                  </div>
+                </div>
               </td>
             </tr>
           </tbody>
         </table>
       </b-card>
     </div>
-    <div class="col-md-6 mt-4">
+    <div v-if="userstorage[0].role!='hacker'" class="col-md-6 mt-4">
       <b-card>
         <table class="table table-striped">
           <thead>
@@ -75,14 +95,20 @@
 
 <script>
 import { db } from "../firebase";
-
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       Users: [],
       UsersParticipants: [],
       UsersLeaders: [],
-      user: "",
+      userstorage: {
+        name: "",
+        email: "",
+        isLeader: false,
+        teamName: "",
+        role: "hacker",
+      },
       updateUser: {
         name: "",
         email: "",
@@ -92,6 +118,9 @@ export default {
       selected: [],
       options: [],
     };
+  },
+  computed: {
+    ...mapState(["user"]),
   },
   created() {
     db.collection("users").onSnapshot((snapshotChange) => {
@@ -103,6 +132,7 @@ export default {
           email: doc.data().email,
           isLeader: doc.data().isLeader,
           teamName: doc.data().teamName,
+          role: doc.data().role,
         });
         this.UsersLeaders = this.Users.filter(
           (element) => element.isLeader == true
@@ -110,9 +140,12 @@ export default {
         this.UsersParticipants = this.Users.filter(
           (element) => element.isLeader == false
         );
+        this.userstorage = this.Users.filter(
+          (element) => element.email == this.user.data.email
+        );
       });
     });
-    console.log(this.Users);
+
     //console.log(this.UsersParticipants);
   },
   methods: {

@@ -4,7 +4,7 @@
       class="row justify-content-center"
       style="background-image: url(img/loginScreen.png); height: 600px;"
     >
-      <div class="col-md-4">
+      <div class="col-md-4 mt-4">
         <h3 style="color:white" class="text-center">Sign up</h3>
         <b-card style="border-radius:5px">
           <br />
@@ -20,6 +20,12 @@
             <div class="form-group">
               <label>Password</label>
               <input type="password" class="form-control" v-model="form.password" required />
+            </div>
+            <div class="form-group">
+              <b-form-group label="Role">
+                <b-form-radio v-model="form.role" name="some-radios" value="admin">Administrator</b-form-radio>
+                <b-form-radio v-model="form.role" name="some-radios" value="hacker">Hacker</b-form-radio>
+              </b-form-group>
             </div>
             <div class="form-group">
               <b-button @click="submit" class="btn btn-primary btn-block">Sign In</b-button>
@@ -40,12 +46,15 @@ export default {
         name: "",
         email: "",
         password: "",
+        role: "",
+        isLeader: false,
       },
       error: null,
     };
   },
   methods: {
     submit() {
+      console.log(this.form);
       auth
         .createUserWithEmailAndPassword(this.form.email, this.form.password)
         .then((data) => {
@@ -54,15 +63,23 @@ export default {
               displayName: this.form.name,
             })
             .then(() => {
+              console.log("Cargando Datas");
+              if (this.form.role == "admin") {
+                this.isLeader = true;
+              } else {
+                this.isLeader = false;
+              }
+
               db.collection("users")
                 .doc(data.user.uid)
                 .set({
                   name: this.form.name,
                   email: this.form.email,
                   event: "",
-                  role: "admin",
+                  role: this.form.role,
+                  isLeader: this.isLeader,
                 })
-                .then(() =>
+                .then(
                   auth
                     .signInWithEmailAndPassword(
                       this.form.email,
@@ -70,6 +87,7 @@ export default {
                     )
                     .then(() => {
                       // alert(JSON.stringify(data));
+                      alert(JSON.stringify(data));
                       this.$router.replace({ name: "addinguser" });
                     })
                     .catch((err) => {

@@ -4,7 +4,7 @@
       class="row justify-content-center"
       style="background-image: url(img/loginScreen.png); height: 600px;"
     >
-      <div class="col-md-4">
+      <div class="col-md-4 mt-4">
         <h3 style="color:white" class="text-center">Login</h3>
         <b-card style="border-radius:5px">
           <br />
@@ -28,7 +28,8 @@
 </template>
 
 <script>
-//import { auth } from "../firebase";
+import { auth } from "../firebase";
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -40,17 +41,19 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["SET_LOAD_IN"]),
     submit() {
-      this.$router.replace({ name: "addinguser" });
-      //auth
-      //  .signInWithEmailAndPassword(this.form.email, this.form.password)
-      //  .then(() => {
-      // alert(JSON.stringify(data));
-      //    this.$router.replace({ name: "addinguser" });
-      //  })
-      //  .catch((err) => {
-      //    this.error = err.message;
-      //  });
+      //this.$router.replace({ name: "addinguser" });
+      auth
+        .signInWithEmailAndPassword(this.form.email, this.form.password)
+        .then((data) => {
+          this.SET_LOAD_IN(data);
+          alert(JSON.stringify(data));
+          this.$router.replace({ name: "addinguser" });
+        })
+        .catch((err) => {
+          this.error = err.message;
+        });
     },
   },
 };

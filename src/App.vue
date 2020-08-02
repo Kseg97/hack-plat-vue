@@ -6,8 +6,8 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item-dropdown text="Find out more" right>
-            <b-dropdown-item href="#">Events Hackathon</b-dropdown-item>
-            <b-dropdown-item href="#">News</b-dropdown-item>
+            <b-dropdown-item href="/nextevent">Events Hackathon</b-dropdown-item>
+            <b-dropdown-item href="/announcement">Announcement</b-dropdown-item>
           </b-nav-item-dropdown>
           <b-nav-item href="/register">Register</b-nav-item>
           <b-nav-item href="/login">Login</b-nav-item>
