@@ -40,8 +40,8 @@ export default {
     submit() {
       auth
         .signInWithEmailAndPassword(this.form.email, this.form.password)
-        .then((data) => {
-          alert(JSON.stringify(data));
+        .then(() => {
+          // alert(JSON.stringify(data));
           this.$router.replace({ name: "addinguser" });
         })
         .catch((err) => {

@@ -39,10 +39,15 @@
 <script>
 import { auth } from "./firebase";
 import { mapGetters } from "vuex";
+import store from './store';
 
 export default {
   data() {
-    return {};
+    return {
+      user:{
+        loggedIn: store.state.user
+      }
+    };
   },
   methods: {
     signOut() {

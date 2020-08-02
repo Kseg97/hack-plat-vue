@@ -10,6 +10,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { auth } from './firebase'
 
+auth.onAuthStateChanged(function(user) {
+  store.dispatch("fetchUser", user);
+  // alert(JSON.stringify(user))
+});
+
+
+
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
@@ -25,9 +32,7 @@ Vue.loadScript("https://meet.jit.si/external_api.js")
   });
 
 
-  auth.onAuthStateChanged(function(user) {
-    store.dispatch("fetchUser", user);
-  });
+
 
 new Vue({
   router,
