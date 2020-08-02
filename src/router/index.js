@@ -53,7 +53,13 @@ const routes = [
     name: 'login',
     meta: { requiresAuth: false },
     component: () => import('../components/Login')
-  }
+  },  
+  {
+    path: '/news',
+    name: 'news',
+    meta: { requiresAuth: false },
+    component: () => import('../components/News')
+  },
 ]
 
 const router = new VueRouter({
