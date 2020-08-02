@@ -60,6 +60,12 @@ const routes = [
     meta: { requiresAuth: false },
     component: () => import('../components/News')
   },
+  {
+    path: '/events',
+    name: 'events',
+    meta: { requiresAuth: false },
+    component: () => import('../components/Events')
+  },
 ]
 
 const router = new VueRouter({
