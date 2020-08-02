@@ -15,8 +15,14 @@ const routes = [
   {
     path: '/adding',
     name: 'addinguser',
-    meta: { requiresAuth: true, allow: "admin" },
+    meta: { requiresAuth: false },
     component: () => import('../components/UserCreate')
+  },
+  {
+    path: '/list',
+    name: 'list',
+    meta: { requiresAuth: false },
+    component: () => import('../components/UserList')
   },
   {
     path: '/list',
@@ -24,6 +30,19 @@ const routes = [
     meta: { requiresAuth: true, allow: "admin" },
     component: () => import('../components/UserList')
   },
+  {
+    path: '/announcement',
+    name: 'announcement',
+    meta: { requiresAuth: true, allow: "admin" },
+    component: () => import('../components/Annuoncement')
+  },
+  {
+    path: '/nextevent',
+    name: 'nextevent',
+    meta: { requiresAuth: true, allow: "admin" },
+    component: () => import('../components/NextEvent')
+  },
+
   {
     path: '/edit/:id',
     name: 'edit',
@@ -33,13 +52,13 @@ const routes = [
   {
     path: '/room/:id',
     name: 'room',
-    meta: { requiresAuth: true, allow: "admin" },
+    meta: { requiresAuth: false },
     component: () => import('../components/Room')
   },
   {
     path: '/room/:id',
     name: 'room',
-    meta: { requiresAuth: true, allow: "hacker" },
+    meta: { requiresAuth: false },
     component: () => import('../components/Room')
   },
   {
@@ -107,7 +126,7 @@ router.beforeEach(async (to, from, next) => {
     // else next('homepage')
     const role = userData.data().role;
     //@TODO: permitir el acceso a la ruta correcta
-    if(role!="admin") next('homepage')
+    if (role != "admin") next('homepage')
     else next()
 
     // // role where to?

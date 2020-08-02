@@ -8,6 +8,9 @@ export default new Vuex.Store({
     user: {
       loggedIn: false,
       data: null
+    },
+    datasUSer: {
+
     }
   },
   getters: {
@@ -18,6 +21,9 @@ export default new Vuex.Store({
   mutations: {
     SET_LOGGED_IN(state, value) {
       state.user.loggedIn = value;
+    },
+    SET_LOAD_IN(state, value) {
+      state.datasUSer = value;
     },
     SET_USER(state, data) {
       state.user.data = data;

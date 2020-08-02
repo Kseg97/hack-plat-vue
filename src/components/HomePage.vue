@@ -3,12 +3,43 @@
 <template>
   <div>
     <section>
-      <div>
-        <h1>Hello</h1>
-        <h2>Master</h2>
+      <div class="justify-content-center" style="background-image: url(img/creatingFondo.png);">
+        <div class="text-center" style="color:white; height: 600px; padding-top:180px">
+          <h1>CONNECT.A.THON</h1>
+          <h2>Hack, Hope & Healing</h2>
+        </div>
+      </div>
+
+      <div class="justify-content-center mt-5">
+        <div class="col-md-5">
+          <div class="text-center">
+            <h2
+              class="display-3"
+              style="color: #32325d; font-size: 2.1875rem;
+            font-weight: 600;
+            line-height: 1.3;"
+            >Better than before</h2>
+            <p
+              style="font-size: 1.25rem;
+            font-weight: 300;
+            line-height: 1.7;
+            margin-top: 1.5rem;
+            color: #525f7f;"
+              class="lead"
+            >Ideas are key to changing the world, enjoy hackathon experiences and share your ideas.</p>
+            <div class="btn-wrapper">
+              <a href="/register" class="btn btn-primary">Registrate</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="justify-content-center mt-5"
+        style="background-image: url(img/partOfCreating.png); margin-bottom:50px"
+      >
+        <div class="text-center" style="color:white; height: 568px; padding-top:120px"></div>
       </div>
     </section>
-    <h1>Hackaton</h1>
     <AppFooter />
   </div>
 </template>
