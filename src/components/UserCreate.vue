@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { db } from "../firebaseDb";
+import { db } from "../firebase";
 import { ToggleButton } from "vue-js-toggle-button";
 import Vue from "vue";
 
@@ -47,6 +47,7 @@ export default {
         email: "",
         isLeader: false,
         teamName: "",
+        role: "hacker"
       },
     };
   },

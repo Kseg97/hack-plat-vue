@@ -5,7 +5,10 @@ import store from "./store";
 import LoadScript from 'vue-plugin-load-script';
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+import { auth } from './firebase'
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
@@ -19,6 +22,11 @@ Vue.loadScript("https://meet.jit.si/external_api.js")
   })
   .catch(() => {
     // Failed to fetch script
+  });
+
+
+  auth.onAuthStateChanged(function(user) {
+    store.dispatch("fetchUser", user);
   });
 
 new Vue({

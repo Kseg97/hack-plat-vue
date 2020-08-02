@@ -2,10 +2,14 @@
   <b-container fluid>
     <div class="loadpage row justify-content-center">
       <div class="col-md-5">
-        <h3 style="color:white" class="text-center">Login</h3>
+        <h3 style="color:white" class="text-center">Sign up</h3>
         <b-card style="border-radius:5px">
           <br />
           <form @submit.prevent="onFormSubmit">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="name" class="form-control" v-model="form.name" required />
+            </div>
             <div class="form-group">
               <label>Email</label>
               <input type="email" class="form-control" v-model="form.email" required />
@@ -25,11 +29,12 @@
 </template>
 
 <script>
-import { auth } from "../firebase"; 
+import { auth, db } from "../firebase";
 export default {
   data() {
     return {
       form: {
+        name: "",
         email: "",
         password: "",
       },
@@ -39,10 +44,36 @@ export default {
   methods: {
     submit() {
       auth
-        .signInWithEmailAndPassword(this.form.email, this.form.password)
+        .createUserWithEmailAndPassword(this.form.email, this.form.password)
         .then((data) => {
-          alert(JSON.stringify(data));
-          this.$router.replace({ name: "addinguser" });
+          data.user
+            .updateProfile({
+              displayName: this.form.name,
+            })
+            .then(() => {
+              db.collection("users")
+                .doc(data.user.uid)
+                .set({
+                  name: this.form.name,
+                  email: this.form.email,
+                  event: "",
+                  role: "admin",
+                })
+                .then(() =>
+                  auth
+                    .signInWithEmailAndPassword(
+                      this.form.email,
+                      this.form.password
+                    )
+                    .then((data) => {
+                      alert(JSON.stringify(data));
+                      this.$router.replace({ name: "addinguser" });
+                    })
+                    .catch((err) => {
+                      this.error = err.message;
+                    })
+                );
+            });
         })
         .catch((err) => {
           this.error = err.message;
