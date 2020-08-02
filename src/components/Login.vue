@@ -1,7 +1,10 @@
 <template>
   <b-container fluid>
-    <div class="loadpage row justify-content-center">
-      <div class="col-md-5">
+    <div
+      class="row justify-content-center"
+      style="background-image: url(img/loginScreen.png); height: 600px;"
+    >
+      <div class="col-md-4">
         <h3 style="color:white" class="text-center">Login</h3>
         <b-card style="border-radius:5px">
           <br />
@@ -25,7 +28,7 @@
 </template>
 
 <script>
-import { auth } from "../firebase"; 
+//import { auth } from "../firebase";
 export default {
   data() {
     return {
@@ -38,15 +41,16 @@ export default {
   },
   methods: {
     submit() {
-      auth
-        .signInWithEmailAndPassword(this.form.email, this.form.password)
-        .then(() => {
-          // alert(JSON.stringify(data));
-          this.$router.replace({ name: "addinguser" });
-        })
-        .catch((err) => {
-          this.error = err.message;
-        });
+      this.$router.replace({ name: "addinguser" });
+      //auth
+      //  .signInWithEmailAndPassword(this.form.email, this.form.password)
+      //  .then(() => {
+      // alert(JSON.stringify(data));
+      //    this.$router.replace({ name: "addinguser" });
+      //  })
+      //  .catch((err) => {
+      //    this.error = err.message;
+      //  });
     },
   },
 };

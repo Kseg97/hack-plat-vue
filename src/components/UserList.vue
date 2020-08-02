@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 mt-4">
       <b-card>
         <table class="table table-striped">
           <thead>
@@ -33,7 +33,7 @@
         </table>
       </b-card>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 mt-4">
       <b-card>
         <table class="table table-striped">
           <thead>

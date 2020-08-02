@@ -1,7 +1,10 @@
 <template>
   <b-container fluid>
-    <div class="loadpage row justify-content-center">
-      <div class="col-md-5">
+    <div
+      class="row justify-content-center"
+      style="background-image: url(img/loginScreen.png); height: 600px;"
+    >
+      <div class="col-md-4">
         <h3 style="color:white" class="text-center">Sign up</h3>
         <b-card style="border-radius:5px">
           <br />
