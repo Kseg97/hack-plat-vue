@@ -72,7 +72,19 @@ const routes = [
     name: 'login',
     meta: { requiresAuth: false },
     component: () => import('../components/Login')
-  }
+  },  
+  {
+    path: '/news',
+    name: 'news',
+    meta: { requiresAuth: false },
+    component: () => import('../components/News')
+  },
+  {
+    path: '/events',
+    name: 'events',
+    meta: { requiresAuth: false },
+    component: () => import('../components/Events')
+  },
 ]
 
 const router = new VueRouter({
