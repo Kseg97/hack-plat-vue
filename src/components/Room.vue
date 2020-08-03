@@ -5,9 +5,26 @@
         <b-card style="height: 588px">
           <p style="color: #525f7f;">Rooms available in this hackathon</p>
           <ul id="example-1">
-            <li v-for="item in UsersLeaders" :key="item.key">
-              <div @click="cambiandoSala(item)">{{ item.teamName }}</div>
-            </li>
+            <div v-for="item in UsersLeaders" :key="item.key">
+              <div class="row">
+                <div>
+                  <img src="../assets/team_icon.png" width="20" height="16" />
+                </div>
+                <div class="col-sm">
+                  <div @click="cambiandoSala(item)" class="clickable">{{ item.teamName }}</div>
+                </div>
+                <div class="col-sm">
+                  <b-badge
+                    class="participant-badge"
+                    variant="danger"
+                    v-b-tooltip.hover
+                    :title="p.name"
+                    v-for="p in Users.filter(participant=>participant.teamName==item.teamName)"
+                    :key="p.key"
+                  >{{p.name[0]}}</b-badge>
+                </div>
+              </div>
+            </div>
           </ul>
           <p style="color: #525f7f;">Participants</p>
           <ul id="example-1">
@@ -22,7 +39,7 @@
           <div style="width:800px">
             <h3 class="text-center">Room</h3>
             <div @click="muteAll()">
-              <p>Mute all</p>
+              <b-badge variant="danger">Mute all</b-badge>
             </div>
             <div id="jitsi-container"></div>
           </div>
@@ -166,3 +183,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.clickable {
+  cursor: pointer;
+}
+.participant-badge {
+  margin-right: 2px;
+}
+</style>

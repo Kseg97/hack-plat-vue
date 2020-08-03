@@ -5,13 +5,16 @@
     <section>
       <div class="justify-content-center" style="background-image: url(img/creatingFondo.png);">
         <div class="text-center" style="color:white; height: 600px; padding-top:180px">
-          <h1>CONNECT.A.THON</h1>
-          <h2>Hack, Hope & Healing</h2>
+          <img src="../assets/logo_w.png" class="img-fluid" alt="Responsive image" width="30%">
+          <h2>HACK, HOPE & HEALING</h2>
+          <br>
+          <b-button variant="outline-light" size="lg" href="/register">Connect!</b-button>
         </div>
       </div>
 
-      <div class="justify-content-center mt-5">
-        <div class="col-md-5">
+      <div class="justify-content-center ">
+        <br>
+        <div >
           <div class="text-center">
             <h2
               class="display-3"
@@ -27,9 +30,7 @@
             color: #525f7f;"
               class="lead"
             >Ideas are key to changing the world, enjoy hackathon experiences and share your ideas.</p>
-            <div class="btn-wrapper">
-              <a href="/register" class="btn btn-primary">Registrate</a>
-            </div>
+            <b>The hackathon experience in your hands!</b>
           </div>
         </div>
       </div>

@@ -1,7 +1,9 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand href="/">CONNECT.A.THON</b-navbar-brand>
+      <b-navbar-brand href="/">
+        <img src="./assets/logo_w.png" class="img-fluid" alt="Responsive image" width="10%" />
+      </b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
@@ -15,15 +17,15 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown right>
-            <template v-slot:button-content>
-              <em>User</em>
-            </template>
-            <template v-if="user.loggedIn">
+          <template v-if="user.loggedIn">
+            <b-nav-item-dropdown right>
+              <template v-slot:button-content>
+                <b>{{ user.loggedIn.data.displayName}}</b>
+              </template>
               <!-- <div class="nav-item">{{user.data.displayName}}</div> -->
               <b-dropdown-item href="#" @click="signOut">Sign Out</b-dropdown-item>
-            </template>
-          </b-nav-item-dropdown>
+            </b-nav-item-dropdown>
+          </template>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -50,6 +52,7 @@ export default {
   methods: {
     signOut() {
       auth.signOut().then(() => {
+        store.dispatch("fetchUser", null);
         this.$router.replace({ name: "homepage" });
       });
     },

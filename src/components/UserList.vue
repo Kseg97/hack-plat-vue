@@ -4,12 +4,12 @@
       <b-card>
         <div style="background-image: url(img/roomleave2.png); height: 150px;">
           <td v-if="item.teamName">
-            <p style="color: #525f7f;">{{ item.teamName }}</p>
+            <p class="team-title">{{ item.teamName }}</p>
           </td>
           <router-link
             v-if="item.teamName"
             :to="{name: 'room', params: { id: item.key }}"
-            class="btn btn-primary"
+            class="btn btn-warning"
             style="margin-top:90px"
           >Room</router-link>
         </div>
@@ -33,20 +33,28 @@
               <td>{{ user.email }}</td>
               <td v-if="user.teamName">{{ user.teamName }}</td>
               <td>
-                <router-link
+                <b-dropdown
+                  id="dropdown-1"
+                  text
+                  v-if="userstorage[0].role!='hacker'"
+                >
+                  <b-dropdown-item>
+                    <router-link
+                      :to="{name: 'edit', params: { id: user.key, name: user.name }}"
+                      class="btn btn-primary"
+                    >Edit</router-link>
+                  </b-dropdown-item>
+                  <b-dropdown-item>
+                    <div>
+                      <button @click.prevent="deleteUser(user.key)" class="btn btn-danger">Delete</button>
+                    </div>
+                  </b-dropdown-item>
+                </b-dropdown>
+                <!-- <router-link
                   v-if="user.teamName"
                   :to="{name: 'room', params: { id: user.key }}"
                   class="btn btn-primary"
-                >Room</router-link>
-                <div v-if="userstorage[0].role!='hacker'">
-                  <router-link
-                    :to="{name: 'edit', params: { id: user.key, name: user.name }}"
-                    class="btn btn-primary"
-                  >Edit</router-link>
-                  <div>
-                    <button @click.prevent="deleteUser(user.key)" class="btn btn-danger">Delete</button>
-                  </div>
-                </div>
+                >Room</router-link> -->
               </td>
             </tr>
           </tbody>
@@ -182,7 +190,11 @@ export default {
 
 <style>
 .btn-primary {
-  margin-right: 12px;
+  margin-left: 6px;
+}
+.team-title {
+  color: #525f7f;
+  padding-left: 12px;
 }
 </style>
 
