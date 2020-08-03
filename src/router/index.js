@@ -33,13 +33,13 @@ const routes = [
   {
     path: '/announcement',
     name: 'announcement',
-    meta: { requiresAuth: true, allow: "admin" },
-    component: () => import('../components/Annuoncement')
+    meta: { requiresAuth: false },
+    component: () => import('../components/News')
   },
   {
     path: '/nextevent',
     name: 'nextevent',
-    meta: { requiresAuth: true, allow: "admin" },
+    meta: { requiresAuth: false },
     component: () => import('../components/NextEvent')
   },
 
@@ -72,7 +72,7 @@ const routes = [
     name: 'login',
     meta: { requiresAuth: false },
     component: () => import('../components/Login')
-  },  
+  },
   {
     path: '/news',
     name: 'news',
