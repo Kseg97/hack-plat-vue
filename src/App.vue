@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="background-image: url(img/loginScreen.png); height: 600px;">
     <div id="nav">
       <Navigation />
       <event/>
