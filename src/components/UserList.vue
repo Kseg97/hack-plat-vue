@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-md-2 mt-4 ml-4" v-for="item in UsersLeaders" :key="item.key">
-      <b-card>
+      <b-card v-show="item.teamName">
         <div style="background-image: url(img/roomleave2.png); height: 150px;">
           <td v-if="item.teamName">
             <p class="team-title">{{ item.teamName }}</p>
@@ -29,15 +29,11 @@
           </thead>
           <tbody>
             <tr v-for="user in UsersLeaders" :key="user.key">
-              <td>{{ user.name }}</td>
-              <td>{{ user.email }}</td>
+              <td v-if="user.teamName">{{ user.name }}</td>
+              <td v-if="user.teamName">{{ user.email }}</td>
               <td v-if="user.teamName">{{ user.teamName }}</td>
-              <td>
-                <b-dropdown
-                  id="dropdown-1"
-                  text
-                  v-if="userstorage[0].role!='hacker'"
-                >
+              <td v-if="user.teamName">
+                <b-dropdown id="dropdown-1" text v-if="userstorage[0].role!='hacker'">
                   <b-dropdown-item>
                     <router-link
                       :to="{name: 'edit', params: { id: user.key, name: user.name }}"
@@ -54,7 +50,7 @@
                   v-if="user.teamName"
                   :to="{name: 'room', params: { id: user.key }}"
                   class="btn btn-primary"
-                >Room</router-link> -->
+                >Room</router-link>-->
               </td>
             </tr>
           </tbody>
@@ -145,6 +141,10 @@ export default {
         this.UsersLeaders = this.Users.filter(
           (element) => element.isLeader == true
         );
+        this.UsersLeaders = this.UsersLeaders.filter(
+          (element) => element.teamName != null
+        );
+        console.log(this.UsersLeaders);
         this.UsersParticipants = this.Users.filter(
           (element) => element.isLeader == false
         );
