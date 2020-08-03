@@ -10,13 +10,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { auth } from './firebase'
 
-auth.onAuthStateChanged(function(user) {
+auth.onAuthStateChanged(function (user) {
   store.dispatch("fetchUser", user);
   // alert(JSON.stringify(user))
 });
 
-
-
+import Chat from 'vue-beautiful-chat'
+Vue.use(Chat)
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin

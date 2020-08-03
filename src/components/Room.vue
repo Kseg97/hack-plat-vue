@@ -48,21 +48,16 @@
     </div>
     <b-button class="floating" v-b-modal.modal-no-backdrop>Open modal</b-button>
 
-    <b-modal id="modal-no-backdrop" hide-backdrop content-class="shadow" title="BootstrapVue">
-      <Chat
-        :participants="participants"
-        :myself="myself"
-        :messages="messages"
-        :onType="onType"
-        :onMessageSubmit="onMessageSubmit"
-        :chatTitle="chatTitle"
-        :placeholder="placeholder"
-        :colors="colors"
-        :borderStyle="borderStyle"
-        :hideCloseButton="hideCloseButton"
-        :closeButtonIconSize="closeButtonIconSize"
-        :submitIconSize="submitIconSize"
-      />
+    <b-modal id="modal-no-backdrop" hide-backdrop content-class="shadow" title="Chatting">
+      <div style="background: #525f7f; border-radius:10px; padding: 5px">
+        <p style="color: white; padding-top:5px">Camilo Segura</p>
+      </div>
+      <div style="background: #d8d8d8; border-radius:10px; padding: 5px; height: 300px;">
+        <div
+          style="background: #8cdbfb; border-radius:10px; padding: 5px; width:120px; margin-top:10px "
+        >Hello</div>
+      </div>
+      <b-form-input class="mt-4" v-model="text" placeholder="Enter your name"></b-form-input>
     </b-modal>
   </div>
 </template>
@@ -81,6 +76,7 @@ export default {
   },
   data() {
     return {
+      text: "",
       room: this.$route.params.id,
       username: this.$route.params.name,
       Users: [],
