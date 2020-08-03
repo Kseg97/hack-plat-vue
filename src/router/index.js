@@ -93,29 +93,6 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     // this route requires auth, check if logged in
-//     // if not, redirect to login page.
-//     const user = store.state.user.data;
-//     alert(JSON.stringify(user))
-//     if (!user) {
-//       next({
-//         path: '/login',
-//         query: { redirect: to.fullPath }
-//       })
-//     } else {
-//       // db.collection("users").doc(user.uid).get()
-//       //   .then(userData => {
-//       //     if (to.matched.some(record => record.meta.allow == userData.role)) next();
-//       //   })
-//       next()
-//     }
-//   } else {
-//     next() // make sure to always call next()!
-//   }
-// })
-
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const user = await firebase.getCurrentUser()

@@ -5,9 +5,26 @@
         <b-card style="height: 588px">
           <p style="color: #525f7f;">Rooms available in this hackathon</p>
           <ul id="example-1">
-            <li v-for="item in UsersLeaders" :key="item.key">
-              <div @click="cambiandoSala(item)">{{ item.teamName }}</div>
-            </li>
+            <div v-for="item in UsersLeaders" :key="item.key">
+              <div class="row">
+                <div>
+                  <img src="../assets/team_icon.png" width="20" height="16" />
+                </div>
+                <div class="col-sm">
+                  <div @click="cambiandoSala(item)" class="clickable">{{ item.teamName }}</div>
+                </div>
+                <div class="col-sm">
+                  <b-badge
+                    class="participant-badge"
+                    variant="danger"
+                    v-b-tooltip.hover
+                    :title="p.name"
+                    v-for="p in Users.filter(participant=>participant.teamName==item.teamName)"
+                    :key="p.key"
+                  >{{p.name[0]}}</b-badge>
+                </div>
+              </div>
+            </div>
           </ul>
           <p style="color: #525f7f;">Participants</p>
           <ul id="example-1">
@@ -22,13 +39,31 @@
           <div style="width:800px">
             <h3 class="text-center">Room</h3>
             <div @click="muteAll()">
-              <p>Mute all</p>
+              <b-badge variant="danger">Mute all</b-badge>
             </div>
             <div id="jitsi-container"></div>
           </div>
         </b-card>
       </div>
     </div>
+    <b-button class="floating" v-b-modal.modal-no-backdrop>Open modal</b-button>
+
+    <b-modal id="modal-no-backdrop" hide-backdrop content-class="shadow" title="BootstrapVue">
+      <Chat
+        :participants="participants"
+        :myself="myself"
+        :messages="messages"
+        :onType="onType"
+        :onMessageSubmit="onMessageSubmit"
+        :chatTitle="chatTitle"
+        :placeholder="placeholder"
+        :colors="colors"
+        :borderStyle="borderStyle"
+        :hideCloseButton="hideCloseButton"
+        :closeButtonIconSize="closeButtonIconSize"
+        :submitIconSize="submitIconSize"
+      />
+    </b-modal>
   </div>
 </template>
 
@@ -37,8 +72,13 @@
 //this.$route.params.id
 // import { db } from '../firebaseDb';
 // import Vue from 'vue'
-import { db } from "../firebase";
+import { db, firebase } from "../firebase";
+import { Chat } from "vue-quick-chat";
+
 export default {
+  components: {
+    Chat,
+  },
   data() {
     return {
       room: this.$route.params.id,
@@ -166,3 +206,68 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.clickable {
+  cursor: pointer;
+}
+.participant-badge {
+  margin-right: 2px;
+}
+.floating {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+}
+.chat {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chat li {
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted #b3a9a9;
+}
+
+.chat li.left .chat-body {
+  margin-left: 60px;
+}
+
+.chat li.right .chat-body {
+  margin-right: 60px;
+}
+
+.chat li .chat-body p {
+  margin: 0;
+  color: #777777;
+}
+
+.panel .slidedown .glyphicon,
+.chat .glyphicon {
+  margin-right: 5px;
+}
+
+.panel-body {
+  overflow-y: scroll;
+  height: 500px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+</style>

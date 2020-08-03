@@ -18,7 +18,7 @@
               <input type="password" class="form-control" v-model="form.password" required />
             </div>
             <div class="form-group">
-              <b-button @click="submit" class="btn btn-primary btn-block">Sign In</b-button>
+              <b-button @click="submit" class="btn btn-primary btn-block">Sign in</b-button>
             </div>
           </form>
         </b-card>
@@ -48,7 +48,7 @@ export default {
         .signInWithEmailAndPassword(this.form.email, this.form.password)
         .then((data) => {
           this.SET_LOAD_IN(data);
-          alert(JSON.stringify(data));
+          // alert(JSON.stringify(data));
           this.$router.replace({ name: "addinguser" });
         })
         .catch((err) => {

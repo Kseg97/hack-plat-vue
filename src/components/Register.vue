@@ -28,7 +28,7 @@
               </b-form-group>
             </div>
             <div class="form-group">
-              <b-button @click="submit" class="btn btn-primary btn-block">Sign In</b-button>
+              <b-button @click="submit" class="btn btn-primary btn-block">Sign Up</b-button>
             </div>
           </form>
         </b-card>
@@ -87,7 +87,7 @@ export default {
                     )
                     .then(() => {
                       // alert(JSON.stringify(data));
-                      alert(JSON.stringify(data));
+                      // alert(JSON.stringify(data));
                       this.$router.replace({ name: "addinguser" });
                     })
                     .catch((err) => {
