@@ -34,13 +34,13 @@ const routes = [
     path: '/announcement',
     name: 'announcement',
     meta: { requiresAuth: false },
-    component: () => import('../components/News')
+    component: () => import('../components/Events')
   },
   {
     path: '/nextevent',
     name: 'nextevent',
     meta: { requiresAuth: false },
-    component: () => import('../components/NextEvent')
+    component: () => import('../components/News')
   },
 
   {

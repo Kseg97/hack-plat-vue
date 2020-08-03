@@ -2,7 +2,7 @@
   <div style="background-image: url(img/loginScreen.png); height: 600px;">
     <div class="col-md-9 container">
       <h3 class="text-center" style="color:white">
-        <strong>News</strong>
+        <strong>Events Hackathons</strong>
       </h3>
       <div v-for="vnew in news" v-bind:key="vnew">
         <div class="card mb-3 mt-3 shadow-sm" style="padding: 10px">
@@ -37,22 +37,22 @@ export default {
       // const news = newsCollection.get().doc.map(doc => doc.data());
       const news = [
         {
-          name: "Winners of the Hackathon 2020",
+          name: "Let's Hack Mexico | Hackathon Virtual",
           description:
-            "The AESS Unicauca team took first place in the hackathon with a very innovative project to make user interaction easier in Hackathons.",
-          source: "University of Cauca",
+            "Hackify es una comunidad de programadores creada con el objetivo de promover y fomentar el desarrollo de proyectos de tecnología en México",
+          source: "University of Mexico",
         },
         {
-          name: "Winners of the Hackathon 2019",
+          name: "Hackathon Supercivico",
           description:
-            "The AESS Unicauca team took first place in the hackathon with a very innovative project to make user interaction easier in Hackathons.",
+            "Un hackaton es un maratón de desarrollo de proyectos colaborativos, interdisciplinarios con herramientas tecnológicas..",
           source: "Hackathon Fundation",
         },
         {
-          name: "Winners of the Hackathon 2018",
+          name: "Hackathon Virtual CEMEX 2020",
           description:
-            "The AESS Unicauca team took first place in the hackathon with a very innovative project to make user interaction easier in Hackathons.",
-          source: "Hackathon Fundation",
+            "El 1er Hackathon guiado en donde podrán participar los colaboradores de CEMEX México y Central para resolver el reto:¿Qué oportunidades de negocio identificas para resolver las necesidades de la Industria de la Construcción?.",
+          source: "Online Event",
         },
       ];
       return news;
