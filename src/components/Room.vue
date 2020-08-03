@@ -46,7 +46,7 @@
         </b-card>
       </div>
     </div>
-    <b-button class="floating" v-b-modal.modal-no-backdrop>Open modal</b-button>
+    <b-button class="floating" v-b-modal.modal-no-backdrop>Chat</b-button>
 
     <b-modal id="modal-no-backdrop" hide-backdrop content-class="shadow" title="Chatting">
       <div style="background: #525f7f; border-radius:10px; padding: 5px">
