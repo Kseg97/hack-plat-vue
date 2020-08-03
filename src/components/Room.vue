@@ -98,6 +98,9 @@ export default {
         this.UsersLeaders = this.Users.filter(
           (element) => element.isLeader == true
         );
+        this.UsersLeaders = this.UsersLeaders.filter(
+          (element) => element.teamName != null
+        );
         this.UsersParticipants = this.Users.filter(
           (element) => element.isLeader == false
         );
